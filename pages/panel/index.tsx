@@ -7,11 +7,18 @@ const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400},{name: 'Page A', uv
 
 const PanelControl = () => {
     const [items, setItems] = useState<any[]>([]);
+    const [items2, setItems2] = useState<any[]>([]);
     useEffect(() => {
         const items = localStorage.getItem('favorites') ;
+        const items2 = localStorage.getItem('FDiagnostico') ;
         if (items) {
          setItems(JSON.parse(items));
+         
         }
+        if (items2) {
+            setItems2(JSON.parse(items2));
+        }
+
       }, []);
   
       const dataCharts = items.map(data =>{
@@ -50,7 +57,10 @@ const PanelControl = () => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography>Numero de cotizaciones: {dataCharts.length}</Typography>
-                <Typography>Numero de reparaciones: 0</Typography>
+                <Typography>Numero de reparaciones: {items2.length}</Typography>
+                
+                <Typography>Total observaciones {items2.length}</Typography>
+
                 <Typography>Total de Ingresos {totalPrice} </Typography>
             </Grid>
         </Grid>

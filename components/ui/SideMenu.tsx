@@ -3,6 +3,7 @@ import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, Confirmati
 
 
 export const SideMenu = () => {
+    
   return (
     <Drawer
         open={ false }

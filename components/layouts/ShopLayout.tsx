@@ -1,7 +1,8 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import  Head  from "next/head";
 import { Navbar } from '../ui';
 import { SideMenu } from '../ui/SideMenu';
+
 interface Props {
     title:string,
     pageDescription:string;
@@ -9,6 +10,7 @@ interface Props {
     children?: React.ReactNode
 }
 export const ShopLayout:FC<Props> = ({children, title, pageDescription, imageFullUrl}) => {
+
   return (
     <>
         <Head>
@@ -27,10 +29,10 @@ export const ShopLayout:FC<Props> = ({children, title, pageDescription, imageFul
         </Head>
         <nav>
             <Navbar />
-            <SideMenu />
+            <SideMenu  />
         </nav>
 
-        <main style={{ margin:'80px auto',maxWidth:'1140px',padding:'0px 30px' }}>
+        <main style={{ margin:'80px auto',maxWidth:'1140px',padding:'0px 30px' }} >
             { children }
         </main>
 

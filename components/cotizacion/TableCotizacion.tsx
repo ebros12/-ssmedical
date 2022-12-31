@@ -12,7 +12,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
+  width: '90vw',
   height:'90vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
@@ -88,6 +88,7 @@ const TableCotizacion = () => {
       }
       items.push(aux)
       localStorage.setItem('favorites', JSON.stringify(items));
+      handleClose();
     }
 
 
@@ -112,7 +113,7 @@ const TableCotizacion = () => {
     <Box sx={{ margin:'1rem',float:'right' }}>
       <Button sx={{ margin:'1rem',float:'right' }} color="warning" onClick={handleOpen} >Crear Cotizacion</Button>
       
-    <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+    <Table className='tableScroll' size="small" aria-label="simple table">
       
     <TableHead>
       <TableRow>
@@ -169,75 +170,102 @@ const TableCotizacion = () => {
           Ingrese los Datos para la Cotizacion
           </Typography>
           <Grid container spacing={1}>
-              <Grid item xs={12} className='inputs'>
+              <Grid item xs={12} md={6} className='inputs'>
                   <Controller
                     
                     name={"cliente"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                      <TextField name="cliente" className='m1r' onChange={onChange} value={value} label={"Cliente"} />
+                      <TextField name="cliente" className='m2r' onChange={onChange} value={value} label={"Cliente"} />
                     )}
                   />
 
-                  <Controller
-                    name={"fechaCotiz"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                           
-                            className='m1r'
-                            label="Fecha Cotización"
-                            value={value}
-                            onChange={onChange}
-                            renderInput={(params) => <TextField id='fechaCotiz' className='m1r' {...params} />}
-                        />
-                      </LocalizationProvider>
-                    )}
-                  />
+
 
                   <Controller
                     name={"oc"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                      <TextField name="oc" className='m1r' onChange={onChange} value={value} label={"oc"} />
+                      <TextField name="oc" className='m2r' onChange={onChange} value={value} label={"oc"} />
                     )}
                   />
 
-                  <Controller
-                    name={"fechaOC"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            className='m1r'
-                            label="Fecha OC"
-                            value={value}
-                            onChange={onChange}
-                            renderInput={(params) => <TextField id="fechaOC" className='m1r' {...params} />}
-                        />
-                      </LocalizationProvider>
-                    )}
-                  />
+                  
 
                   <Controller
                     name={"factura"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                      <TextField name="factura" className='m1r' onChange={onChange} value={value} label={"factura"} />
+                      <TextField name="factura" className='m2r' onChange={onChange} value={value} label={"factura"} />
                     )}
                   />
+
+                  
+                  
+                  
+
                   <Controller
+                  
+                    name={"comentario"}
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <TextField name="comentario" className='m2r' onChange={onChange} value={value} label={"Comentarios"} />
+                    )}
+                  />
+
+                  <Controller
+                    name={"montoNeto"}
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <TextField name="montoNeto" className='m2r' onChange={onChange} value={value} label={"Monto Neto"} />
+                    )}
+                  />
+                  
+
+              </Grid>
+              <Grid item xs={12} md={6} className='inputs'>
+                <Controller
+                      name={"fechaCotiz"}
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DatePicker
+                            
+                              className='m2r'
+                              label="Fecha Cotización"
+                              value={value}
+                              onChange={onChange}
+                              renderInput={(params) => <TextField id='fechaCotiz' className='m2r' {...params} />}
+                          />
+                        </LocalizationProvider>
+                      )}
+                    />
+                    <Controller
+                    name={"fechaOC"}
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                            className='m2r'
+                            label="Fecha OC"
+                            value={value}
+                            onChange={onChange}
+                            renderInput={(params) => <TextField id="fechaOC" className='m2r' {...params} />}
+                        />
+                      </LocalizationProvider>
+                    )}
+                  />
+                                    <Controller
                     name={"fechaFactura"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePicker
-                          className='m1r'
+                          className='m2r'
                           label="Fecha Factura"
                           value={value}
                           onChange={onChange}
-                          renderInput={(params) => <TextField id="fechaFactura" className='m1r' {...params} />}
+                          renderInput={(params) => <TextField id="fechaFactura" className='m2r' {...params} />}
                       />
                       </LocalizationProvider>
                     )}
@@ -248,37 +276,16 @@ const TableCotizacion = () => {
                     render={({ field: { onChange, value } }) => (
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePicker
-                          className='m1r'
+                          className='m2r'
                           label="Fecha Pago"
                           value={value}
                           onChange={onChange}
-                          renderInput={(params) => <TextField id="fechaPago" className='m1r' {...params} />}
+                          renderInput={(params) => <TextField id="fechaPago" className='m2r' {...params} />}
                       />
                       </LocalizationProvider>
                     )}
                   />
-                  
-                  
-                  
-
-                  <Controller
-                  
-                    name={"comentario"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <TextField name="comentario" className='m1r' onChange={onChange} value={value} label={"Comentarios"} />
-                    )}
-                  />
-
-                  <Controller
-                    name={"montoNeto"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <TextField name="montoNeto" className='m1r' onChange={onChange} value={value} label={"Monto Neto"} />
-                    )}
-                  />
-                  <Select  name="estado" className='m1r' options={options} />
-
+                  <Select  name="estado" className='m2r' options={options} />
               </Grid>
               <Grid item xs={12}>
               <Button onClick={guardarCotiz} color='success' sx={{ margin:'1rem 0rem',float:'right' }}>Guardar</Button>

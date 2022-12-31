@@ -123,7 +123,15 @@ a {
 }
 .TableContainer{
   height: 70vh;
+  
 }
 .selects{
   width: 120%;
+}
+.tableScroll{
+  width: 100vw!important;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto;
+  display: contents;
 }

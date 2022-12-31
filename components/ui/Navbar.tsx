@@ -5,8 +5,8 @@ import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 
 export const Navbar = () => {
   return (
-    <AppBar>
-        <Toolbar>
+    <AppBar >
+        <Toolbar >
             <NextLink href='/' passHref style={{ display:'flex',alignItems:'center' }}>
                 <Typography variant='h6'>Teslo |</Typography>
                 <Typography sx={{ ml:0.5 }}>Shop</Typography>
@@ -42,7 +42,7 @@ export const Navbar = () => {
                 </IconButton>
             </NextLink> */}
 
-            <Button>
+            <Button >
                 Menú
             </Button>
         </Toolbar>
