@@ -40,12 +40,7 @@ const Index = () => {
     
       }, infoCabezera);
 
-      const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState({
-          ...state,
-          [event.target.name]: event.target.checked,
-        });
-      };
+ 
 
       const guardarCabezaera = () => {
         const Cliente = document.querySelector("input[name='Cliente']") as HTMLInputElement | {value:''}
