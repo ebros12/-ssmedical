@@ -1,4 +1,4 @@
-import { Table, TableRow, TableCell, Grid, Typography, TextField, CardMedia, Button, Box, Modal } from '@mui/material';
+import { Table, TableRow, TableCell, Grid, Typography, TextField, CardMedia, Button, Box, Modal, Checkbox } from '@mui/material';
 import { typography } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
@@ -16,7 +16,21 @@ const style = {
   };
 
 const Index = () => {
-    
+    const [state, setState] = React.useState({
+        VerificacionID: true,
+        jason: false,
+        antoine: false,
+      });
+      const { register, handleSubmit } = useForm({
+        defaultValues: {
+          firstName: '',
+          lastName: '',
+          category: '',
+          checkbox: [],
+          radio: ''
+        }
+      });
+    const { VerificacionID, jason, antoine } = state;
     const { reset, control } = useForm();
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,7 +51,14 @@ const Index = () => {
         }
     
       }, infoCabezera);
-      console.log(infoCabezera)
+
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setState({
+          ...state,
+          [event.target.name]: event.target.checked,
+        });
+      };
+
       const guardarCabezaera = () => {
         const Cliente = document.querySelector("input[name='Cliente']") as HTMLInputElement | {value:''}
         const Direccion = document.querySelector("input[name='Direccion']") as HTMLInputElement | {value:''}
@@ -97,6 +118,7 @@ const Index = () => {
         setItems([])
         setInfoCabezera([])
       }
+      
 
   return (
     <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones"} >
@@ -245,28 +267,94 @@ const Index = () => {
             <Button sx={{ float:'right' }} color='warning' onClick={guardarDiagnostico}>Agregar</Button>
         </Box>
       </Modal>
-    
-            <Table>      
-                <TableRow  className='row-style'>
-                    <TableCell variant="head">DIAGNÓSTICO ENDOSCOPIO</TableCell>
-                    <TableCell variant="head">DETALLES</TableCell>
-                    <TableCell variant="head">COMENTARIOS</TableCell>
-                </TableRow>     
-                
-                    {
-                        items.map(item =>(
-                            <TableRow   key={item.id} className='row-style'>
-                                <TableCell variant="head">{item.Dendoscopio}</TableCell>
-                                <TableCell>{item.Detalles}</TableCell>
-                                <TableCell>{item.Comentarios}</TableCell>
-                            </TableRow>      
-                        ))
-                    }
+            <Grid container>
+                <Grid item xs={12} md={6}>
+                    <Typography >DIAGNÓSTICO ENDOSCOPIO</Typography>
                     
-                    
+                    <Box display={'flex'} marginBottom='2rem'>
+                        <Typography sx={{ marginTop:'4rem',position: 'relative',top:'2rem' }}>Estados </Typography>
+                        <Typography  className='text90deg'>OK</Typography>
+                        <Typography  className='text90deg'>No Crítico</Typography>
+                        <Typography  className='text90deg'>Crítico</Typography>
+                        <Typography  className='text90deg'>Pedido Cliente</Typography>
+                        <Typography  className='text90deg'>No Aplica</Typography>
+                    </Box>
 
-                
-            </Table>
+
+                </Grid>
+                <Grid item xs={12} md={6}></Grid>
+
+                <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                <Typography >ESTADO</Typography>
+                <Controller
+                        name={"VerificacionID"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <Box sx={{ display:'flex' }}>
+                                <Typography margin={"1rem"}>Verificación ID</Typography>
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="OK" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="No Crítico" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="Crítico" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="Pedido Cliente" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="No Aplica" />
+                            </Box>
+
+                        )}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                <Typography marginBottom={'1rem'}>DETALLES</Typography>
+                    <Controller
+                        name={"VerificacionIDDetalles"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <Box>
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Sin datos" />Sin datos
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Error  datos" />Error  datos
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Sin transmisión" />Sin transmisión
+                            </Box>
+
+                        )}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                <Typography >ESTADO</Typography>
+                <Controller
+                        name={"VerificacionID"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <Box sx={{ display:'flex' }}>
+                                <Typography margin={"1rem"}>Verificación ID</Typography>
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="OK" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="No Crítico" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="Crítico" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="Pedido Cliente" />
+                                <input {...register("VerificacionID")} type="radio" className="marginInput" value="No Aplica" />
+                            </Box>
+
+                        )}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                <Typography marginBottom={'1rem'}>DETALLES</Typography>
+                    <Controller
+                        name={"VerificacionIDDetalles"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <Box>
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Sin datos" />Sin datos
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Error  datos" />Error  datos
+                                <input {...register("VerificacionIDDetalles")} type="radio" value="Sin transmisión" />Sin transmisión
+                            </Box>
+
+                        )}
+                    />
+                </Grid>
+            </Grid>
+
             <Button sx={{ float:'right' }}>Informe Técnico</Button>
         </Grid>
     </Grid>

@@ -28,3 +28,16 @@
   overflow: auto;
   display: contents;
 }
+
+.text90deg{
+  transform: rotate(-90deg);
+  width: 7rem;
+  height: 2rem;
+  margin: -2rem;
+  position: relative!important;
+  left: 5rem;
+  top: 5rem;
+}
+.marginInput{
+  margin: 17px;
+}
