@@ -41,3 +41,24 @@
 .marginInput{
   margin: 17px;
 }
+
+.smOnly{
+  display: none;
+}
+.xlOnly{
+  display: block;
+}
+.boxEffect{
+  border-top:1px solid gray;
+  padding: 2rem 0rem 0rem 0rem;
+}
+@media (max-width: 480px) {
+
+  .smOnly{
+    display: block;
+  }
+  .xlOnly{
+    display: none;
+  }
+
+}
