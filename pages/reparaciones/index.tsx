@@ -36,13 +36,9 @@ const Index = () => {
             
         }
     
-      }, []);
+      }, infoCabezera);
       console.log(infoCabezera)
-      const guardarDiagnostico = () => {
-        const Dendoscopio = document.querySelector("input[name='DENDOSCOPIO']") as HTMLInputElement | {value:''}
-        const Detalles = document.querySelector("input[name='DETALLES']") as HTMLInputElement | {value:''}
-        const Comentarios = document.querySelector("input[name='COMENTARIOS']") as HTMLInputElement | {value:''}
-
+      const guardarCabezaera = () => {
         const Cliente = document.querySelector("input[name='Cliente']") as HTMLInputElement | {value:''}
         const Direccion = document.querySelector("input[name='Direccion']") as HTMLInputElement | {value:''}
         const Modelo = document.querySelector("input[name='Modelo']") as HTMLInputElement | {value:''}
@@ -50,6 +46,27 @@ const Index = () => {
         const fIngreso = document.querySelector("input[name='Fecha Ingreso']") as HTMLInputElement | {value:''}
         const SS = document.querySelector("input[name='SS']") as HTMLInputElement | {value:''}
         const cCliente = document.querySelector("input[name='Comentario Cliente']") as HTMLInputElement | {value:''}
+        if(Cliente.value != '' || Modelo.value != ''){
+            let auxCabezera = {
+                Cliente:Cliente.value,
+                Direccion:Direccion.value,
+                Modelo:Modelo.value,
+                nSerie:nSerie.value,
+                fIngreso:fIngreso.value,
+                SS:SS.value,
+                cCliente:cCliente.value,
+            }
+            infoCabezera.push(auxCabezera);
+            localStorage.setItem('InfoCabezera', JSON.stringify(infoCabezera));
+            setInfoCabezera(infoCabezera)
+        }
+      }
+      const guardarDiagnostico = () => {
+        const Dendoscopio = document.querySelector("input[name='DENDOSCOPIO']") as HTMLInputElement | {value:''}
+        const Detalles = document.querySelector("input[name='DETALLES']") as HTMLInputElement | {value:''}
+        const Comentarios = document.querySelector("input[name='COMENTARIOS']") as HTMLInputElement | {value:''}
+
+
         
         if(Dendoscopio.value != '' || Detalles.value != ''){
         
@@ -62,25 +79,23 @@ const Index = () => {
 
             }
 
-            let auxCabezera = {
-                Cliente:Cliente.value,
-                Direccion:Direccion.value,
-                Modelo:Modelo.value,
-                nSerie:nSerie.value,
-                fIngreso:fIngreso.value,
-                SS:SS.value,
-                cCliente:cCliente.value,
-            }
+
             items.push(aux)
-            infoCabezera.push(auxCabezera)
+            
            
             localStorage.setItem('FDiagnostico', JSON.stringify(items));
-            localStorage.setItem('InfoCabezera', JSON.stringify(infoCabezera));
+           
             handleClose()
         }else{
             alert('uff')
           }
 
+      }
+      const borrarTodo = () =>{
+        localStorage.removeItem('FDiagnostico');
+        localStorage.removeItem('InfoCabezera');
+        setItems([])
+        setInfoCabezera([])
       }
 
   return (
@@ -188,10 +203,14 @@ const Index = () => {
 
 
         <Grid item xs={12}>
-            
-        <hr style={{ margin:'2rem' }}/>
+            {
+                infoCabezera.length === 0?<Button sx={{ float:'right'  }} color='success' onClick={guardarCabezaera}>Guardar Informacion del cliente</Button>:''
+            }
+        
+        <hr style={{ margin:'3rem 0rem' }}/>
         
         <Button sx={{ float:'right' }} onClick={handleOpen}>Agregar Diagnóstico</Button>
+        <Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
         <Modal
         open={open}
         onClose={handleClose}
