@@ -3,14 +3,17 @@ import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { initialData } from '../../database/configuraciones'
 
+
+
 export const InformeTecnico = () => {
 
     const data = initialData.products
     const defaultData = data.map(dataItem => {return {[dataItem.name]:''}})
+    interface IFV {
+        name:string
+    }
     console.log(defaultData);
-    const { register,control } = useForm({
-        defaultValues: defaultData,
-      });
+    const { register,control } = useForm();
 
   return (
     <Grid container>
