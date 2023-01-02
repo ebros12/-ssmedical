@@ -11,8 +11,8 @@ export const Navbar = () => {
     <AppBar >
         <Toolbar >
             <NextLink href='/' passHref style={{ display:'flex',alignItems:'center' }}>
-                <Typography variant='h6'>Teslo |</Typography>
-                <Typography sx={{ ml:0.5 }}>Shop</Typography>
+                <Typography variant='h6'>S&S |</Typography>
+                <Typography sx={{ ml:0.5 }}>Medical</Typography>
             </NextLink>
 
             <Box flex={1}/>
