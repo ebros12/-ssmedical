@@ -36,5 +36,48 @@ export const initialData: SeedData = {
             'Pedido', 'Cliente',
             'No Aplica'],
         detalles:['Humedad','Tortuga','Suciedad']
-    }]
+    },{
+        name:'Contacto del Ocular',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:['Con Fuga','Corridos','Sucio']
+    },{
+        name:'Ocular',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:['Nublado','Corrido']
+    },{
+        name:'Botones',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:['Botón 1','Botón 2','Botón 3','Botón 4']
+    },{
+        name:'Prueba de fugas',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:[]
+    },{
+        name:'Prueba de Aislación C-Distal',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:[]
+    },{
+        name:'Aislación Tubo Inserción',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:[]
+    },{
+        name:'Canales Aire/Agua o CO2',
+        estado:['OK', 'No Crítico', 'Crítico',
+            'Pedido', 'Cliente',
+            'No Aplica'],
+        detalles:['Obstruido','Lento','Desalineados']
+    }
+]
 }

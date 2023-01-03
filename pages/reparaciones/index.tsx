@@ -1,8 +1,10 @@
 import { Table, TableRow, TableCell, Grid, Typography, TextField, CardMedia, Button, Box, Modal, Checkbox } from '@mui/material';
 import { typography } from '@mui/system';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import { ShopLayout } from '../../components/layouts';
+import { Cabezera } from '../../components/reparaciones';
 import { InformeTecnico } from '../../components/reparaciones/InformeTecnico';
 const style = {
     position: 'absolute' as 'absolute',
@@ -106,153 +108,14 @@ const Index = () => {
   return (
     <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones"} >
     <Grid container>
-        
-        <Grid item xs={12} sx={{ textAlign:'center',margin:'1rem' }}>
-            <Typography >FORMULARIO DE DIAGNÓSTICO</Typography>
-        </Grid>
-        {infoCabezera.length === 0 ? (
-        <Grid container>
-                <Grid item xs={12} md={4}>
-            
-                <Controller
-                    name={"Cliente"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="Cliente" className='m2r' onChange={onChange} value={value} label={"Cliente"} />
-                    )}
-                />
-                <Controller
-                    name={"Direccion"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="Direccion" className='m2r' onChange={onChange} value={value} label={"Direccion"} />
-                    )}
-                />
-                <Controller
-                    name={"Modelo"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="Modelo" className='m2r' onChange={onChange} value={value} label={"Modelo"} />
-                    )}
-                />
-                <Controller
-                    name={"N°Serie"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="N°Serie" className='m2r' onChange={onChange} value={value} label={"N°Serie"} />
-                    )}
-                />
-                
-            </Grid>
-            <Grid item xs={12} md={4}>
-                <Controller
-                    name={"Fecha Ingreso"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="Fecha Ingreso" className='m1r' onChange={onChange} value={value} label={"Fecha Ingreso"} />
-                    )}
-                />
-                <Controller
-                    name={"SS"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="SS" className='m1r' onChange={onChange} value={value} label={"SS"} />
-                    )}
-                />
-                <Controller
-                    name={"Comentario Cliente"}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <TextField name="Comentario Cliente" className='m2r' onChange={onChange} value={value} label={"Comentario Cliente"} />
-                    )}
-                />
-                
-                
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-                <CardMedia
-                    sx={{ height: '15vh',width:'15vw',margin:'1.5rem' }}
-                    image="iconoSSMedical.png"
-                    title="SSMedical"
-                />
-            </Grid>
-
-            </Grid>)
-            : infoCabezera.map(item => (
-                <Grid container key={item.id}>
-                    <Grid item xs={12} md={4}>
-                        <Typography><strong>Cliente: </strong> {item.Cliente}</Typography>
-                        <Typography><strong>Direccion: </strong> {item.Direccion}</Typography>
-                        <Typography><strong>Modelo: </strong> {item.Modelo}</Typography>
-                        <Typography><strong>N° Serie: </strong> {item.nSerie}</Typography>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <Typography><strong>Fecha Ingreso: </strong>{item.fIngreso}</Typography>
-                        <Typography><strong>SS: </strong>{item.SS}</Typography>
-                        <Typography><strong>Comentario Cliente: </strong>{item.cCliente}</Typography>
-
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <CardMedia
-                            sx={{ height: '15vh',width:'15vw',margin:'1.5rem' }}
-                            image="iconoSSMedical.png"
-                            title="SSMedical"
-                        />
-                    </Grid>
-                </Grid>
-
-            ))
-          
-        }
+        <Cabezera />
+  
 
 
         <Grid item xs={12}>
-            {
-                infoCabezera.length === 0?<Button sx={{ float:'right'  }} color='success' onClick={guardarCabezaera}>Guardar Informacion del cliente</Button>:''
-            }
-        
-        <hr style={{ margin:'3rem 0rem' }}/>
-        
-        <Button sx={{ float:'right' }} onClick={handleOpen}>Agregar Diagnóstico</Button>
-        <Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
-        <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            DIAGNÓSTICO ENDOSCOPIO
-          </Typography>
-          <Controller
-                name={"DIAGNÓSTICO ENDOSCOPIO"}
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                    <TextField name="DENDOSCOPIO" className='m2r' onChange={onChange} value={value} label={"DIAGNÓSTICO ENDOSCOPIO"} />
-                )}
-            />
-            <Controller
-                name={"DETALLES"}
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                    <TextField name="DETALLES" className='m2r' onChange={onChange} value={value} label={"DETALLES"} />
-                )}
-            />
-            <Controller
-                name={"COMENTARIOS"}
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                    <TextField name="COMENTARIOS" className='m2r' onChange={onChange} value={value} label={"COMENTARIOS"} />
-                )}
-            />
-            <Button sx={{ float:'right' }} color='warning' onClick={guardarDiagnostico}>Agregar</Button>
-        </Box>
-      </Modal>
-
+            <Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
             <InformeTecnico />
-            <Button sx={{ float:'right' }}>Informe Técnico</Button>
+            <Link href={'/reparaciones/Informe'} passHref><Button sx={{ float:'right' }}>Informe Técnico</Button></Link>
         </Grid>
     </Grid>
 

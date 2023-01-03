@@ -12,11 +12,11 @@ export const InformeTecnico = () => {
     interface IFV {
         name:string
     }
-    console.log(defaultData);
+
     const { register,control } = useForm();
 
   return (
-    <Grid container>
+    <Grid container overflow={'scroll'} height='35vh'>
         <Grid item xs={12} md={6}>
             <Typography >DIAGNÓSTICO ENDOSCOPIO</Typography>
             
@@ -40,14 +40,14 @@ export const InformeTecnico = () => {
             data.map(itemData => (
                 <>
                 
-                    <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                    <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
                         <Typography className="smOnly">ESTADO</Typography>
                         <Controller
                                 name={itemData.name}
                                 control={control}
                                 render={({ field: { onChange, value } }) => (
                                     <Box sx={{ display:'flex' }}>
-                                        <Typography margin={"1rem"}>{itemData.name}</Typography>
+                                        <Typography margin={"1rem"} width='6rem'>{itemData.name}</Typography>
                                         <input {...register(itemData.name)} type="radio" className="marginInput" value="OK" />
                                         <input {...register(itemData.name)} type="radio" className="marginInput" value="No Crítico" />
                                         <input {...register(itemData.name)} type="radio" className="marginInput" value="Crítico" />
@@ -64,11 +64,11 @@ export const InformeTecnico = () => {
                                 name={itemData.name}
                                 control={control}
                                 render={({ field: { onChange, value } }) => (
-                                    <Box>
+                                    <Box padding={'2rem 0rem;'}>
                                         {
                                             itemData.detalles.map(detalle => (
                                                 <>
-                                                    <input {...register(detalle)} type="checkbox" value="Sin datos" />{detalle}
+                                                    <input {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
                                                 </>
                                             ))
                                         }
