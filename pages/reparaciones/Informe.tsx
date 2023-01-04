@@ -1,5 +1,5 @@
 import { ShopLayout } from '../../components/layouts'
-import {Cabezera, InformeForm}  from '../../components/reparaciones'
+import {Cabezera, InformeForm, SubirImg}  from '../../components/reparaciones'
 const Informe = () => {
     
 
@@ -8,6 +8,7 @@ const Informe = () => {
     <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones | Informe"} >
         <Cabezera />
         <InformeForm />
+        <SubirImg />
     </ShopLayout>
   )
 }

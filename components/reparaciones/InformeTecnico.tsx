@@ -16,8 +16,8 @@ export const InformeTecnico = () => {
     const { register,control } = useForm();
 
   return (
-    <Grid container overflow={'scroll'} height='35vh'>
-        <Grid item xs={12} md={6}>
+    <Grid container >
+        <Grid item xs={12} md={12}>
             <Typography >DIAGNÓSTICO ENDOSCOPIO</Typography>
             
             <Box display={'flex'} marginBottom='2rem'>
@@ -29,59 +29,59 @@ export const InformeTecnico = () => {
                 <Typography  className='text90deg'>No Aplica</Typography>
             </Box>
 
-
-        </Grid>
-        <Grid item xs={12} md={6}></Grid>
-        <Grid item xs={12} md={6}><Typography className="xlOnly" margin={'2rem 0rem'}>ESTADO</Typography></Grid>
-        <Grid item xs={12} md={6}><Typography className="xlOnly" margin={'2rem 0rem'}>DETALLES</Typography></Grid>
-        
-        {
             
-            data.map(itemData => (
-                <>
+        </Grid>
+        <Grid item xs={12} md={6}><Typography className="xlOnly" margin={'2rem 0rem'}>ESTADO</Typography></Grid>
+            <Grid item xs={12} md={6}><Typography className="xlOnly" margin={'2rem 0rem'}>DETALLES</Typography></Grid>
+        <Grid container overflow={'scroll'} height='35vh'>
+            
+            {
                 
-                    <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
-                        <Typography className="smOnly">ESTADO</Typography>
-                        <Controller
-                                name={itemData.name}
-                                control={control}
-                                render={({ field: { onChange, value } }) => (
-                                    <Box sx={{ display:'flex' }}>
-                                        <Typography margin={"1rem"} width='6rem'>{itemData.name}</Typography>
-                                        <input {...register(itemData.name)} type="radio" className="marginInput" value="OK" />
-                                        <input {...register(itemData.name)} type="radio" className="marginInput" value="No Crítico" />
-                                        <input {...register(itemData.name)} type="radio" className="marginInput" value="Crítico" />
-                                        <input {...register(itemData.name)} type="radio" className="marginInput" value="Pedido Cliente" />
-                                        <input {...register(itemData.name)} type="radio" className="marginInput" value="No Aplica" />
-                                    </Box>
-
-                                )}
-                            />
-                    </Grid>
-                    <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
-                        <Typography className="smOnly" marginBottom={'1rem'}>DETALLES</Typography>
+                data.map(itemData => (
+                    <>
+                    
+                        <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                            <Typography className="smOnly">ESTADO</Typography>
                             <Controller
-                                name={itemData.name}
-                                control={control}
-                                render={({ field: { onChange, value } }) => (
-                                    <Box padding={'2rem 0rem;'}>
-                                        {
-                                            itemData.detalles.map(detalle => (
-                                                <>
-                                                    <input {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
-                                                </>
-                                            ))
-                                        }
-                                        
-                                    </Box>
+                                    name={itemData.name}
+                                    control={control}
+                                    render={({ field: { onChange, value } }) => (
+                                        <Box sx={{ display:'flex' }}>
+                                            <Typography margin={"1rem"} width='6rem'>{itemData.name}</Typography>
+                                            <input {...register(itemData.name)} type="radio" className="marginInput" value="OK" />
+                                            <input {...register(itemData.name)} type="radio" className="marginInput" value="No Crítico" />
+                                            <input {...register(itemData.name)} type="radio" className="marginInput" value="Crítico" />
+                                            <input {...register(itemData.name)} type="radio" className="marginInput" value="Pedido Cliente" />
+                                            <input {...register(itemData.name)} type="radio" className="marginInput" value="No Aplica" />
+                                        </Box>
 
-                                )}
-                            />
-                    </Grid>
-                </>
-            ))
-        }
+                                    )}
+                                />
+                        </Grid>
+                        <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                            <Typography className="smOnly" marginBottom={'1rem'}>DETALLES</Typography>
+                                <Controller
+                                    name={itemData.name}
+                                    control={control}
+                                    render={({ field: { onChange, value } }) => (
+                                        <Box padding={'2rem 0rem;'}>
+                                            {
+                                                itemData.detalles.map(detalle => (
+                                                    <>
+                                                        <input {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
+                                                    </>
+                                                ))
+                                            }
+                                            
+                                        </Box>
 
+                                    )}
+                                />
+                        </Grid>
+                    </>
+                ))
+            }
+        </Grid>
     </Grid>
   )
 }
