@@ -41,7 +41,7 @@ const handleClose = () => setOpen(false);
         setItems(JSON.parse(JSON.parse(items)));
         
       }
-    }, []);
+    }, items);
 
   const [image, setImage] = useState<any>(null);
   const [createObjectURL, setCreateObjectURL] = useState<any>(null);
@@ -114,7 +114,7 @@ const handleClose = () => setOpen(false);
               </Grid>
           ))
         }
-            <Grid xs={12} textAlign={'center'} display='block'>
+            <Grid xs={12} textAlign={'center'} display='block ruby'>
                 <CardMedia
                       sx={{ height: '15vh',width:'15vw',marginTop:'2rem' }}
                       image='/firma.png'
