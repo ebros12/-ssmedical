@@ -34,6 +34,7 @@ export const SubirImg = () => {
 const handleClose = () => setOpen(false);
   const [items, setItems] = useState<datos>({titulo:[],descripcion:[],url:[]});
 
+
   useEffect(() => {
       let items = localStorage.getItem('InformeImg') ;
 
@@ -41,7 +42,7 @@ const handleClose = () => setOpen(false);
         setItems(JSON.parse(JSON.parse(items)));
         
       }
-    }, items);
+    }, [items]);
 
   const [image, setImage] = useState<any>(null);
   const [createObjectURL, setCreateObjectURL] = useState<any>(null);
