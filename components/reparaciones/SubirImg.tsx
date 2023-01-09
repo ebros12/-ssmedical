@@ -62,12 +62,15 @@ const handleClose = () => setOpen(false);
     // console.log("file", image)
     if(image != null){
         body.append("file", image);    
-        const titulo = 'titulox'
-        const descripcion = 'Despcriotion'
+        const titulo = document.querySelector("input[name='name']") as HTMLInputElement | {value:''}
+        const descripcion = document.querySelector("input[name='desc']") as HTMLInputElement | {value:''}
         const url = `/uploads/${image.name}`
+        if(titulo.value != ''){
+          items.titulo.push(titulo.value)
+          items.descripcion.push(descripcion.value)
+        }
       
-        items.titulo.push(titulo)
-        items.descripcion.push(descripcion)
+
         items.url.push(url)
     
         console.log(items)
@@ -113,6 +116,7 @@ const handleClose = () => setOpen(false);
                     </CardActions>
                   </Card>
               </Grid>
+              
           ))
         }
             <Grid xs={12} textAlign={'center'} display='block ruby'>
@@ -126,6 +130,9 @@ const handleClose = () => setOpen(false);
             <Grid xs={12} textAlign={'center'} display='block'>
               <Typography>S&S Medical Ltda. Av. Del Valle Sur 662 Oficina 203, Ciudad Empresarial, Huechuraba, Santiago</Typography>
             </Grid>
+            <Grid item xs={12} textAlign={'right'} display='block'>
+              <Link href='/reparaciones/Factura' passHref><Button color='primary'>Generar Factura</Button></Link>  
+            </Grid>
         </Grid>
         
         <Modal
@@ -137,6 +144,20 @@ const handleClose = () => setOpen(false);
         <Box sx={style}>
             <div>
                 <Typography>Seleccionar una Imagen</Typography>
+                <Controller
+                        name={"name"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <TextField name="name" className='m2r' onChange={onChange} value={value} label={"Titulo"} />
+                        )}
+                    />
+                    <Controller
+                        name={"desc"}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <TextField name="desc" className='m2r' onChange={onChange} value={value} label={"Descripcion"} />
+                        )}
+                    />
                 <img width={'100%'} src={createObjectURL} />
                 
                 <input type="file" name="myImage" onChange={uploadToClient} />

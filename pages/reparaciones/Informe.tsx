@@ -1,3 +1,5 @@
+import { Button } from '@mui/material'
+import Link from 'next/link'
 import { ShopLayout } from '../../components/layouts'
 import {Cabezera, InformeForm, SubirImg}  from '../../components/reparaciones'
 const Informe = () => {

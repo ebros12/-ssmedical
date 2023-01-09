@@ -53,8 +53,25 @@
   margin: 0;
   padding: 0;
 }
+.box{
+  border: 1px solid black;
+  text-align: center;
+}
+.headBox{
+  background-color: #192543;
+  color: white;
+  text-align: center;
+}
+.espacio{
+  margin: 1.5rem;
+}
+.boxPrincipal{
+  padding:0rem 14rem;
+}
 @media (max-width: 480px) {
-
+  .boxPrincipal{
+    padding: 0;
+  }
   .smOnly{
     display: block;
   }
