@@ -25,7 +25,7 @@ const FacturaAcciones = () => {
 
     const { control, reset } = useForm();
     const [total, setTotal] = useState(0)
-    const [data, setData] = useState<datos[]>([{codigo:'',descripcion:'',precioUnitario:'',cantidad:''}])
+    const [data, setData] = useState<datos[]>([])
 
       useEffect(() => {
         let data = localStorage.getItem('Factura') ;
