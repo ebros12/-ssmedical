@@ -1,4 +1,5 @@
 import { Modal, Box, Grid, Typography, TextField, Button, CardMedia, Card, CardActions, CardContent } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -42,7 +43,7 @@ const handleClose = () => setOpen(false);
         setItems(JSON.parse(JSON.parse(items)));
         
       }
-    }, [items]);
+    }, []);
 
   const [image, setImage] = useState<any>(null);
   const [createObjectURL, setCreateObjectURL] = useState<any>(null);
@@ -59,7 +60,7 @@ const handleClose = () => setOpen(false);
 
   const uploadToServer = async (event:any) => {        
     const body = new FormData();
-    // console.log("file", image)
+
     if(image != null){
         body.append("file", image);    
         const titulo = document.querySelector("input[name='name']") as HTMLInputElement | {value:''}
@@ -73,7 +74,7 @@ const handleClose = () => setOpen(false);
 
         items.url.push(url)
     
-        console.log(items)
+
         localStorage.setItem('InformeImg', JSON.stringify(JSON.stringify(items)));
         setItems(items)
         reset()
@@ -119,7 +120,7 @@ const handleClose = () => setOpen(false);
               
           ))
         }
-            <Grid xs={12} textAlign={'center'} display='block ruby'>
+            <Grid item xs={12} textAlign={'center'} display='block ruby'>
                 <CardMedia
                       sx={{ height: '15vh',width:'15vw',marginTop:'2rem' }}
                       image='/firma.png'
@@ -127,12 +128,10 @@ const handleClose = () => setOpen(false);
                 />
                 
             </Grid>
-            <Grid xs={12} textAlign={'center'} display='block'>
+            <Grid item xs={12} textAlign={'center'} display='block'>
               <Typography>S&S Medical Ltda. Av. Del Valle Sur 662 Oficina 203, Ciudad Empresarial, Huechuraba, Santiago</Typography>
             </Grid>
-            <Grid item xs={12} textAlign={'right'} display='block'>
-              <Link href='/reparaciones/Factura' passHref><Button color='primary'>Generar Factura</Button></Link>  
-            </Grid>
+
         </Grid>
         
         <Modal
@@ -142,7 +141,7 @@ const handleClose = () => setOpen(false);
         aria-describedby="modal-modal-description"
         >
         <Box sx={style}>
-            <div>
+
                 <Typography>Seleccionar una Imagen</Typography>
                 <Controller
                         name={"name"}
@@ -158,7 +157,7 @@ const handleClose = () => setOpen(false);
                             <TextField name="desc" className='m2r' onChange={onChange} value={value} label={"Descripcion"} />
                         )}
                     />
-                <img width={'100%'} src={createObjectURL} />
+                <Image  alt={createObjectURL} src={createObjectURL} />
                 
                 <input type="file" name="myImage" onChange={uploadToClient} />
                 <Button
@@ -169,7 +168,6 @@ const handleClose = () => setOpen(false);
                 >
                     Subir
                 </Button>
-            </div>
 
         </Box>
         </Modal>

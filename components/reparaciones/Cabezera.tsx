@@ -1,5 +1,5 @@
 import { Grid, Typography, TextField, CardMedia, Button } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 export const Cabezera = () => {
@@ -114,20 +114,20 @@ export const Cabezera = () => {
 
     </Grid>)
     : infoCabezera.map(item => (
-        <Grid container key={item.id}>
-            <Grid item xs={12} md={4}>
+        <Grid container key={`${item.id}1`}>
+            <Grid item xs={12} md={4} key={`${item.id}2`}>
                 <Typography><strong>Cliente: </strong> {item.Cliente}</Typography>
                 <Typography><strong>Direccion: </strong> {item.Direccion}</Typography>
                 <Typography><strong>Modelo: </strong> {item.Modelo}</Typography>
                 <Typography><strong>N° Serie: </strong> {item.nSerie}</Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} key={`${item.id}3`}>
                 <Typography><strong>Fecha Ingreso: </strong>{item.fIngreso}</Typography>
                 <Typography><strong>SS: </strong>{item.SS}</Typography>
                 <Typography><strong>Comentario Cliente: </strong>{item.cCliente}</Typography>
 
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} key={`${item.id}4`}> 
                 <CardMedia
                     sx={{ height: '15vh',width:'15vw',margin:'1.5rem' }}
                     image="/iconoSSMedical.png"

@@ -43,14 +43,14 @@ export const InformeForm = () => {
         }
       }, []);
 
-      console.log(items);
+    
       const guardar = () => {
         if(items){
             switch(btnSelecct){
                 case 'obs':
                     const obs = document.querySelector("input[name='Observación']") as HTMLInputElement | {value:''}
                     if(obs.value != ''){
-                        console.log(items)
+                  
                         items.obs.push(obs.value)
                         localStorage.setItem('Informe', JSON.stringify(JSON.stringify(items)));
                         setItems(items)
@@ -60,7 +60,7 @@ export const InformeForm = () => {
                 case 'tRealizados':
                     const realizados = document.querySelector("input[name='Observación']") as HTMLInputElement | {value:''}
                     if(realizados.value != ''){
-                        console.log(items)
+     
                         items.tRealizados.push(realizados.value)
                         localStorage.setItem('Informe', JSON.stringify((JSON.stringify(items))));
                         setItems(items)
@@ -70,7 +70,7 @@ export const InformeForm = () => {
                 case 'tReparacion':
                     const reparacion = document.querySelector("input[name='Observación']") as HTMLInputElement | {value:''}
                     if(reparacion.value != ''){
-                        console.log(items)
+               
                         items.tReparacion.push(reparacion.value)
                         localStorage.setItem('Informe', JSON.stringify((JSON.stringify(items))));
                         setItems(items)

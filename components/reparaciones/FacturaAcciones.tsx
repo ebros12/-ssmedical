@@ -26,20 +26,6 @@ const FacturaAcciones = () => {
     const { control, reset } = useForm();
     const [total, setTotal] = useState(0)
     const [data, setData] = useState<datos[]>([{codigo:'',descripcion:'',precioUnitario:'',cantidad:''}])
-/*     useEffect(() => {
-        setData(data.push({
-            codigo:'PENTAX',
-            descripcion:'Distal End Assy with CFB Original PENTAX',
-            precioUnitario:'2750000',
-            cantidad:'1'
-        }))
-        setData(data.push({
-            codigo:'C210-U1010',
-            descripcion:'Mano de obra reparación e instalacion de repuesto con personal certificado',
-            precioUnitario:'950000',
-            cantidad:'1'
-        }))
-      }, []); */
 
       useEffect(() => {
         let data = localStorage.getItem('Factura') ;
@@ -50,7 +36,7 @@ const FacturaAcciones = () => {
           setTotal(totalPrice)
           
         }
-      }, data);
+      }, []);
 
     const guardarData=() =>{
         if(data){
@@ -164,22 +150,22 @@ const FacturaAcciones = () => {
        
         {
 
-            data ? data.map(item => (
-                <Grid container key={item.codigo}>
-                    <Grid item xs={3} className='box'>
-                        <Typography key={item.codigo} margin={'1rem'}>{item.codigo}</Typography>
+            data ? data.map((item,key) => (
+                <Grid container key={`${key}FA`}>
+                    <Grid item xs={3} className='box' key={`${key}1`}>
+                        <Typography  margin={'1rem'}>{key}</Typography>
                     </Grid>
-                    <Grid item xs={3} className='box'>
-                        <Typography key={item.codigo} margin={'1rem'}>{item.descripcion}</Typography>
+                    <Grid item xs={3} className='box' key={`${key}2`}>
+                        <Typography  margin={'1rem'}>{item.descripcion}</Typography>
                     </Grid>
-                    <Grid item xs={2} className='box'>
-                        <Typography key={item.codigo} margin={'1rem'}>{item.cantidad}</Typography>
+                    <Grid item xs={2} className='box'key={`${key}3`}>
+                        <Typography  margin={'1rem'}>{item.cantidad}</Typography>
                     </Grid>
-                    <Grid item xs={2} className='box'>
-                        <Typography key={item.codigo} margin={'1rem'}>${formatearMoneda(Number(item.precioUnitario))}</Typography>
+                    <Grid item xs={2} className='box' key={`${key}4`}>
+                        <Typography  margin={'1rem'}>${formatearMoneda(Number(item.precioUnitario))}</Typography>
                     </Grid>
-                    <Grid item xs={2} className='box'>
-                        <Typography key={item.codigo} margin={'1rem'}>${formatearMoneda(Number(parseInt(item.cantidad)*parseInt(item.precioUnitario)))}</Typography>
+                    <Grid item xs={2} className='box' key={`${key}5`}>
+                        <Typography  margin={'1rem'}>${formatearMoneda(Number(parseInt(item.cantidad)*parseInt(item.precioUnitario)))}</Typography>
                     </Grid>
                 </Grid>
 

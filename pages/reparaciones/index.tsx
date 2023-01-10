@@ -40,7 +40,7 @@ const Index = () => {
             
         }
     
-      }, infoCabezera);
+      }, []);
 
  
 

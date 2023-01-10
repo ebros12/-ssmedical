@@ -38,15 +38,16 @@ export const InformeTecnico = () => {
             {
                 
                 data.map(itemData => (
-                    <>
+                    <Box key={`${itemData.name}1`} display='contents'>
                     
-                        <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                        <Grid key={`${itemData.name}2`} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
                             <Typography className="smOnly">ESTADO</Typography>
                             <Controller
+                                    
                                     name={itemData.name}
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
-                                        <Box sx={{ display:'flex' }}>
+                                        <Box sx={{ display:'flex' }} key={`${itemData.name}11`}>
                                             <Typography margin={"1rem"} width='6rem'>{itemData.name}</Typography>
                                             <input {...register(itemData.name)} type="radio" className="marginInput" value="OK" />
                                             <input {...register(itemData.name)} type="radio" className="marginInput" value="No Crítico" />
@@ -58,18 +59,19 @@ export const InformeTecnico = () => {
                                     )}
                                 />
                         </Grid>
-                        <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                        <Grid key={`${itemData.name}3`}  item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
                             <Typography className="smOnly" marginBottom={'1rem'}>DETALLES</Typography>
                                 <Controller
+                                   
                                     name={itemData.name}
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
-                                        <Box padding={'2rem 0rem;'}>
+                                        <Box padding={'2rem 0rem;'} key={`${itemData.name}111`}>
                                             {
                                                 itemData.detalles.map(detalle => (
-                                                    <>
-                                                        <input {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
-                                                    </>
+                                                    <Box key={detalle}>
+                                                        <input  {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
+                                                    </Box>
                                                 ))
                                             }
                                             
@@ -78,7 +80,7 @@ export const InformeTecnico = () => {
                                     )}
                                 />
                         </Grid>
-                    </>
+                    </Box>
                 ))
             }
         </Grid>

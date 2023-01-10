@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
+import Image from 'next/image';
 import React from 'react'
 import { ShopLayout } from '../../components/layouts';
 import FacturaAcciones from '../../components/reparaciones/FacturaAcciones';
@@ -109,17 +110,19 @@ const Factura = () => {
           <FacturaAcciones />
         }
                 <Grid item xs={6} textAlign='left' margin={'2rem 0rem'}>
-          <img
+          <Image
               src={`/pentax.png`}
-              srcSet={`/pentax.png`}
+              width={200}
+              height={50}
               alt={'pentax'}
               loading="lazy"
             />
         </Grid>
         <Grid item xs={6} textAlign='right' margin={'2rem 0rem'}>
-          <img
+          <Image
               src={`/olympus.png`}
-              srcSet={`/olympus.png`}
+              width={200}
+              height={50}
               alt={'olympus'}
               loading="lazy"
             />
