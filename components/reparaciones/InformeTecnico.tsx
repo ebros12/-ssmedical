@@ -58,7 +58,7 @@ export const InformeTecnico = () => {
                                     )}
                                 />
                         </Grid>
-                        <Grid item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
+                        <Grid key={itemData.name} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
                             <Typography className="smOnly" marginBottom={'1rem'}>DETALLES</Typography>
                                 <Controller
                                     name={itemData.name}

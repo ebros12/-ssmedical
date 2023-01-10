@@ -65,13 +65,9 @@
 .espacio{
   margin: 1.5rem;
 }
-.boxPrincipal{
-  padding:0rem 14rem;
-}
+
 @media (max-width: 480px) {
-  .boxPrincipal{
-    padding: 0;
-  }
+
   .smOnly{
     display: block;
   }

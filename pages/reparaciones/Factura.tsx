@@ -1,9 +1,11 @@
 import { Box, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
 import React from 'react'
+import { ShopLayout } from '../../components/layouts';
 import FacturaAcciones from '../../components/reparaciones/FacturaAcciones';
 
 const Factura = () => {
   return (
+    <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones | Informe"} >
     <Grid container className="boxPrincipal">
         <Grid item xs={12}>
             <CardMedia
@@ -106,71 +108,7 @@ const Factura = () => {
         {
           <FacturaAcciones />
         }
-        <Grid item xs={12} className='espacio' />
-        <Grid item xs={3} className='box'>
-          <Box>
-              <Typography margin={'1rem'}>Datos Pago</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={5} className='box'>
-          <Box>
-              <Typography margin={'1rem'}>Banco ITAU Cuenta Corriente 224250437</Typography>
-              <Typography margin={'1rem'}>Rut 77.591.147-6  S&S Medical Ltda</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={4} className=''></Grid>
-
-        
-
-        <Grid item xs={3} className='box'>
-          <Box>
-              <Typography margin={'1rem'}>Notas</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={5} className='box'>
-          <Box>
-              <Typography margin={'1rem'}>Cancelar con depósito, transferencia o tarjeta de crédito mediante link de pago WebPay</Typography>
-              <Typography margin={'1rem'}>Vigencia de cotizacion por 15 días</Typography>
-              <Typography margin={'1rem'}>Agradecemos enviar comprobante a isalas@ssmedical.cl</Typography>
-              <Typography margin={'1rem'}>Plazo de entrega 30 dias habiles, con previa recepcion de OC</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={4} className='box' container>
-          <Grid item xs={6} className='box'>
-              <Typography >Sub Total</Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography >$3,700,000  </Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography >Descuento</Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography ></Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography >Valor Neto </Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography ></Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography >Iva (19%)</Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography > $703,000 </Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography >Valor Total</Typography>
-          </Grid>
-          <Grid item xs={6} className='box'>
-              <Typography > $4,403,000 </Typography>
-          </Grid>
-
-     
-        </Grid>
-
-        <Grid item xs={6} textAlign='left' margin={'2rem 0rem'}>
+                <Grid item xs={6} textAlign='left' margin={'2rem 0rem'}>
           <img
               src={`/pentax.png`}
               srcSet={`/pentax.png`}
@@ -191,6 +129,7 @@ const Factura = () => {
             <Typography  > sin pretención de uso. Las marcas mencionadas son propiedad del fabricante correspondiente. </Typography>
         </Grid>
     </Grid>
+    </ShopLayout>
   )
 }
 
