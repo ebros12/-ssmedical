@@ -26,13 +26,7 @@ interface datos{
 export const SubirImg = () => {
   const [open, setOpen] = useState(false);
   const { control, reset } = useForm();
-  const handleOpen = () =>{
-
-    
-    return setOpen(true)
-
-};
-const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(!open);
   const [items, setItems] = useState<datos>({titulo:[],descripcion:[],url:[]});
 
 
@@ -89,36 +83,36 @@ const handleClose = () => setOpen(false);
   return (
     <Box textAlign={'center'}>
         <Typography>SET FOTOGRAFICO</Typography>
-        <Button color={'primary'} sx={{ float:'right',margin:'1rem' }} onClick={() =>handleOpen()}>Agregar Reporte de Imagenes</Button>
+        <Button color={'primary'} sx={{ float:'right',margin:'1rem' }} onClick={() =>handleClose()}>Agregar Reporte de Imagenes</Button>
         <Grid container spacing={2}>
         {
-          items.titulo.map((itemTitulo,index) => (
+          items? items.titulo.map((itemTitulo,index) => (
            
               <Grid item key={index} xs={4}>
-              <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                      sx={{ height: 140 }}
-                      image={items.url[index]}
-                      title={itemTitulo}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {itemTitulo}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {items.descripcion[index]}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                    <Link href={items.url[index]} passHref target={'_blank'}>
-                      <Button size="small">Vista Ampliada</Button>
-                    </Link>
-                      
-                    </CardActions>
-                  </Card>
+                <Card sx={{ maxWidth: 345 }}>
+                      <CardMedia
+                        sx={{ height: 140 }}
+                        image={items.url[index]}
+                        title={itemTitulo}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {itemTitulo}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {items.descripcion[index]}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                      <Link href={items.url[index]} passHref target={'_blank'}>
+                        <Button size="small">Vista Ampliada</Button>
+                      </Link>
+                        
+                      </CardActions>
+                </Card>
               </Grid>
               
-          ))
+          )):''
         }
             <Grid item xs={12} textAlign={'center'} display='block ruby'>
                 <CardMedia
