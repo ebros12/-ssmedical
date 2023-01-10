@@ -1,5 +1,4 @@
 import { Modal, Box, Grid, Typography, TextField, Button, CardMedia, Card, CardActions, CardContent } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -26,7 +25,13 @@ interface datos{
 export const SubirImg = () => {
   const [open, setOpen] = useState(false);
   const { control, reset } = useForm();
-  const handleClose = () => setOpen(!open);
+  const handleOpen = () =>{
+
+    
+    return setOpen(true)
+
+};
+const handleClose = () => setOpen(false);
   const [items, setItems] = useState<datos>({titulo:[],descripcion:[],url:[]});
 
 
@@ -83,36 +88,36 @@ export const SubirImg = () => {
   return (
     <Box textAlign={'center'}>
         <Typography>SET FOTOGRAFICO</Typography>
-        <Button color={'primary'} sx={{ float:'right',margin:'1rem' }} onClick={() =>handleClose()}>Agregar Reporte de Imagenes</Button>
+        <Button color={'primary'} sx={{ float:'right',margin:'1rem' }} onClick={() =>handleOpen()}>Agregar Reporte de Imagenes</Button>
         <Grid container spacing={2}>
         {
-          items? items.titulo.map((itemTitulo,index) => (
+          items.titulo.map((itemTitulo,index) => (
            
               <Grid item key={index} xs={4}>
-                <Card sx={{ maxWidth: 345 }}>
-                      <CardMedia
-                        sx={{ height: 140 }}
-                        image={items.url[index]}
-                        title={itemTitulo}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {itemTitulo}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {items.descripcion[index]}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                      <Link href={items.url[index]} passHref target={'_blank'}>
-                        <Button size="small">Vista Ampliada</Button>
-                      </Link>
-                        
-                      </CardActions>
-                </Card>
+              <Card sx={{ maxWidth: 345 }}>
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={items.url[index]}
+                      title={itemTitulo}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {itemTitulo}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {items.descripcion[index]}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                    <Link href={items.url[index]} passHref target={'_blank'}>
+                      <Button size="small">Vista Ampliada</Button>
+                    </Link>
+                      
+                    </CardActions>
+                  </Card>
               </Grid>
               
-          )):''
+          ))
         }
             <Grid item xs={12} textAlign={'center'} display='block ruby'>
                 <CardMedia
@@ -135,7 +140,7 @@ export const SubirImg = () => {
         aria-describedby="modal-modal-description"
         >
         <Box sx={style}>
-
+            <div>
                 <Typography>Seleccionar una Imagen</Typography>
                 <Controller
                         name={"name"}
@@ -151,7 +156,7 @@ export const SubirImg = () => {
                             <TextField name="desc" className='m2r' onChange={onChange} value={value} label={"Descripcion"} />
                         )}
                     />
-                <Image  alt={createObjectURL} src={createObjectURL} />
+                <img width={'100%'} src={createObjectURL} />
                 
                 <input type="file" name="myImage" onChange={uploadToClient} />
                 <Button
@@ -162,6 +167,7 @@ export const SubirImg = () => {
                 >
                     Subir
                 </Button>
+            </div>
 
         </Box>
         </Modal>
