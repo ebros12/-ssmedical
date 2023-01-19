@@ -33,7 +33,7 @@
   transform: rotate(-90deg);
   width: 8.5rem;
   height: 2rem;
-  margin: -2rem;
+  margin: -2rem!important;
   position: relative!important;
   left: 5rem;
   top: 5rem;
