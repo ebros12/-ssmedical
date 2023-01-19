@@ -31,7 +31,7 @@
 
 .text90deg{
   transform: rotate(-90deg);
-  width: 7rem;
+  width: 8.5rem;
   height: 2rem;
   margin: -2rem;
   position: relative!important;
@@ -39,7 +39,8 @@
   top: 5rem;
 }
 .marginInput{
-  margin: 17px;
+  margin: 30px;
+  cursor: pointer;
 }
 
 .smOnly{

@@ -1,4 +1,6 @@
 import { Box, Button, Grid, InputBase, Modal, TextField, Typography } from '@mui/material'
+import moment from 'moment';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -66,6 +68,51 @@ const FacturaAcciones = () => {
     }
     const formatearMoneda = (moneda:number) =>{
         return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CLP' }).format(moneda)
+    }
+    const router = useRouter();
+    const fecha = moment(Date.now()).format('DD/MM/YYYY')
+
+    const guardarTodo = () =>{
+        let cotizacionesArr = localStorage.getItem('cotizaciones');
+        cotizacionesArr = cotizacionesArr != null ? JSON.parse(cotizacionesArr):[]
+
+        let facturasArr = localStorage.getItem('facturas');
+        facturasArr = facturasArr != null ? JSON.parse(facturasArr):[]
+
+
+        const Factura = JSON.parse(localStorage.getItem('Factura') || '');
+        const InfoCabezera = JSON.parse(localStorage.getItem('InfoCabezera') || '');
+        const Informe = JSON.parse(localStorage.getItem('Informe') || '');
+        const InformeImg = JSON.parse(localStorage.getItem('InformeImg') || '');
+        const RespFDiagnostico = JSON.parse(localStorage.getItem('RespFDiagnostico') || '');
+        const cotizaciones = cotizacionesArr 
+        const facturas = facturasArr 
+        if(cotizaciones!=null && facturas != null){
+            (facturas as unknown as any[]).push({
+                id:facturasArr?facturasArr.length+1 : 1,
+                fechaCotiz:fecha,
+                Factura
+            });
+            (cotizaciones as unknown as any[]).push({
+                id:cotizacionesArr?cotizacionesArr.length+1 : 1,
+                fechaCotiz:fecha,
+                facturas,
+                total,
+                InfoCabezera,
+                Informe,
+                InformeImg,
+                RespFDiagnostico,
+                fechaPago:'',
+                estado:'10',
+                comentarios:''
+            });
+        }
+ 
+        
+     
+        localStorage.setItem('cotizaciones', JSON.stringify(cotizaciones));
+        localStorage.setItem('facturas', JSON.stringify(facturas));
+        router.push('/')
     }
 
   return (
@@ -153,7 +200,7 @@ const FacturaAcciones = () => {
             data ? data.map((item,key) => (
                 <Grid container key={`${key}FA`}>
                     <Grid item xs={3} className='box' key={`${key}1`}>
-                        <Typography  margin={'1rem'}>{key}</Typography>
+                        <Typography  margin={'1rem'}>{item.codigo}</Typography>
                     </Grid>
                     <Grid item xs={3} className='box' key={`${key}2`}>
                         <Typography  margin={'1rem'}>{item.descripcion}</Typography>
@@ -238,7 +285,8 @@ const FacturaAcciones = () => {
         </Grid>
 
         <Grid item xs={12} margin='1rem'>
-            <Button color={'primary'} sx={{ float:'right' }} onClick={() =>handleClose()}>Agregar Diagnóstico</Button>
+            <Button color={'primary'} sx={{ float:'left' }} onClick={() =>handleClose()}>Agregar item Cotización</Button>
+            <Button color={'success'} sx={{ float:'right' }} onClick={guardarTodo}>Finalizar Cotización</Button>
         </Grid>
         
     </Grid>

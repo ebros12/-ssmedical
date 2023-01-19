@@ -115,7 +115,7 @@ const Index = () => {
         <Grid item xs={12}>
             <Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
             <InformeTecnico />
-            <Link href={'/reparaciones/Informe'} passHref><Button sx={{ float:'right' }}>Informe Técnico</Button></Link>
+            
         </Grid>
     </Grid>
 

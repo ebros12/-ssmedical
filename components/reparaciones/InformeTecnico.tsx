@@ -1,4 +1,6 @@
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, Button } from '@mui/material'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { initialData } from '../../database/configuraciones'
@@ -14,6 +16,28 @@ export const InformeTecnico = () => {
     }
 
     const { register,control } = useForm();
+
+    const router = useRouter();
+
+    const guardarDiagnostico = () =>{
+        const direccion = '/reparaciones/Informe';
+        const respuestas = document.querySelectorAll("input");
+        const retorno:any = []
+        if(respuestas){
+            respuestas.forEach(node => { 
+                if(node.checked){
+                    retorno.push({
+                        name:node.name,
+                        value:node.value
+                    })
+                }
+            })
+        }
+        
+        localStorage.setItem('RespFDiagnostico', JSON.stringify(retorno));
+
+        router.push(direccion)
+    }
 
   return (
     <Grid container >
@@ -66,10 +90,10 @@ export const InformeTecnico = () => {
                                     name={itemData.name}
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
-                                        <Box padding={'2rem 0rem;'} key={`${itemData.name}111`}>
+                                        <Box display={'flex'} padding={'2rem 0rem;'} key={`${itemData.name}111`}>
                                             {
                                                 itemData.detalles.map(detalle => (
-                                                    <Box key={detalle}>
+                                                    <Box  key={detalle}>
                                                         <input  {...register(detalle)} type="checkbox" value="Sin datos" /><Typography display={'contents'}>{detalle}</Typography>
                                                     </Box>
                                                 ))
@@ -80,10 +104,15 @@ export const InformeTecnico = () => {
                                     )}
                                 />
                         </Grid>
+                        
                     </Box>
                 ))
             }
         </Grid>
+        <Grid item xs={12}>
+            <Button onClick={guardarDiagnostico} sx={{ float:'right' }}>Informe Técnico</Button>
+        </Grid>
+        
     </Grid>
   )
 }

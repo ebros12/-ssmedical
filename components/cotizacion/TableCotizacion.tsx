@@ -51,15 +51,16 @@ const TableCotizacion = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    let items = localStorage.getItem('favorites') ;
+    let items = localStorage.getItem('cotizaciones') ;
     if(items !== null){
       setItems(JSON.parse(items));
+      
     }
 
   }, []);
 
 
-  
+  console.log(items)
   const guardarCotiz = () => {
     const clienteVar = document.querySelector("input[name='cliente']") as HTMLInputElement | {value:'CENCOMEX'}
     const fechaCotiz = document.querySelector("#fechaCotiz") as HTMLInputElement | {value:'10/7/2022'}
@@ -110,10 +111,13 @@ const TableCotizacion = () => {
     ]
   
   return (
-    <Box sx={{ margin:'1rem',float:'right' }}>
-      <Button sx={{ margin:'1rem',float:'right' }} color="warning" onClick={handleOpen} >Crear Cotizacion</Button>
-      
-    <Table className='tableScroll' size="small" aria-label="simple table">
+    <Grid container sx={{ margin:'1rem',float:'right' }}>
+      <Grid item xs={12}>
+        <Button sx={{ margin:'1rem',float:'right' }} color="warning" onClick={handleOpen} >Crear Cotizacion</Button>
+      </Grid>
+        
+      <Grid item xs={12}>
+        <Table className='tableScroll' size="small" aria-label="simple table">
       
     <TableHead>
       <TableRow>
@@ -139,13 +143,13 @@ const TableCotizacion = () => {
           <StyledTableCell component="th" scope="row">
             {row.id}
           </StyledTableCell>
-          <StyledTableCell align="right">{row.cliente}</StyledTableCell>
+          <StyledTableCell align="right">{row.InfoCabezera[0].Cliente}</StyledTableCell>
           <StyledTableCell align="right">{row.fechaCotiz}</StyledTableCell>
-          <StyledTableCell align="right">{row.montoNeto}</StyledTableCell>
-          <StyledTableCell align="right">{row.OC}</StyledTableCell>
-          <StyledTableCell align="right">{row.fechaOC}</StyledTableCell>
-          <StyledTableCell align="right">{row.factura}</StyledTableCell>
-          <StyledTableCell align="right">{row.fechaFactura}</StyledTableCell>
+          <StyledTableCell align="right">{row.total}</StyledTableCell>
+          <StyledTableCell align="right">{row.InfoCabezera[0].SS}</StyledTableCell>
+          <StyledTableCell align="right">{row.InfoCabezera[0].fIngreso}</StyledTableCell>
+          <StyledTableCell align="right">{row.facturas[0].id}</StyledTableCell>
+          <StyledTableCell align="right">{row.facturas[0].fechaCotiz}</StyledTableCell>
           <StyledTableCell align="right">{row.fechaPago}</StyledTableCell>
           <StyledTableCell align="right">  
             <Select className="selects" options={options} defaultValue={options[options.findIndex((filtro) => filtro.value == row.estado)]}/>
@@ -155,7 +159,8 @@ const TableCotizacion = () => {
         </StyledTableRow>
       ))}
     </TableBody>
-  </Table>
+        </Table>
+      </Grid>
    
       
       <Modal
@@ -296,7 +301,7 @@ const TableCotizacion = () => {
           
       </Box>
       </Modal>
-  </Box>
+  </Grid>
 
   )
 }

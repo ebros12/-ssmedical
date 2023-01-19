@@ -1,10 +1,19 @@
 import { Box, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ShopLayout } from '../../components/layouts';
 import FacturaAcciones from '../../components/reparaciones/FacturaAcciones';
 
 const Factura = () => {
+  const [items, setItems] = useState<any[]>([]);
+  useEffect(() => {
+    let items = localStorage.getItem('favorites') ;
+    if(items !== null){
+      setItems(JSON.parse(items));
+    }
+
+  }, []);
+
   return (
     <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones | Informe"} >
     <Grid container className="boxPrincipal">
@@ -26,7 +35,7 @@ const Factura = () => {
         <Grid item xs={6} className='box'>
             <Box>
                   <Typography className='headBox'>Cotización</Typography>
-                  <Typography margin={'1rem'}>0132</Typography>
+                  <Typography margin={'1rem'}>{items.length+1}</Typography>
             </Box>
         </Grid>
 
