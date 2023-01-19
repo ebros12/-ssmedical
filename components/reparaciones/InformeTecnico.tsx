@@ -72,7 +72,7 @@ export const InformeTecnico = () => {
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
                                         <Box sx={{ display:'flex' }} key={`${itemData.name}11`}>
-                                            <Typography margin={"1rem"} width='6rem'>{itemData.name}</Typography>
+                                            <Typography className='ItemName'>{itemData.name}</Typography>
                                             <input {...register(itemData.name)} type="radio" className="marginInput" value="OK" />
                                             <input {...register(itemData.name)} type="radio" className="marginInput" value="No Crítico" />
                                             <input {...register(itemData.name)} type="radio" className="marginInput" value="Crítico" />

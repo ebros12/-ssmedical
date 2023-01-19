@@ -66,20 +66,30 @@
 .espacio{
   margin: 1.5rem;
 }
+.ItemName{
+  margin:1rem;
+  width:6rem;
+}
 
 @media (max-width: 480px) {
   .marginInput{
     margin: 17px;
   }
   .text90deg{
-    margin: 1rem;
-    width: 4.5rem;
+    margin: 1rem !important;
+    width: 0.9rem;
+    white-space: nowrap;
+    left: 3rem;
   }
   .smOnly{
     display: block;
   }
   .xlOnly{
     display: none;
+  }
+  .ItemName{
+    margin: 0rem;
+    min-width: 6.5rem;
   }
 
 }
