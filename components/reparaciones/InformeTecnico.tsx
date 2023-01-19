@@ -65,7 +65,7 @@ export const InformeTecnico = () => {
                     <Box key={`${itemData.name}1`} display='contents'>
                     
                         <Grid key={`${itemData.name}2`} item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
-                            <Typography className="smOnly">ESTADO</Typography>
+                            <Typography className="xlOnly">ESTADO</Typography>
                             <Controller
                                     
                                     name={itemData.name}
@@ -84,7 +84,7 @@ export const InformeTecnico = () => {
                                 />
                         </Grid>
                         <Grid key={`${itemData.name}3`}  item xs={12} md={6} margin={'2rem 0rem'} className='boxEffect'>
-                            <Typography className="smOnly" marginBottom={'1rem'}>DETALLES</Typography>
+                            <Typography className="xlOnly" marginBottom={'1rem'}>DETALLES</Typography>
                                 <Controller
                                    
                                     name={itemData.name}
