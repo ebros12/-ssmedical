@@ -93,7 +93,7 @@ const handleClose = () => setOpen(false);
         {
           items.titulo.map((itemTitulo,index) => (
            
-              <Grid item key={index} xs={4}>
+              <Grid item key={index} md={4} xs={6}>
               <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                       sx={{ height: 140 }}
@@ -121,7 +121,7 @@ const handleClose = () => setOpen(false);
         }
             <Grid item xs={12} textAlign={'center'} display='block ruby'>
                 <CardMedia
-                      sx={{ height: '15vh',width:'15vw',marginTop:'2rem' }}
+                      className="imgFirma"
                       image='/firma.png'
                       title='Firma'
                 />
