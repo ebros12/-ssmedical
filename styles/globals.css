@@ -75,8 +75,14 @@
   width:15vw;
   margin-top:2rem;
 }
-
+.preImgUp{
+  max-width: 70%;
+  padding: 2rem;
+}
 @media (max-width: 480px) {
+  .boxModal{
+    width: 290px!important;
+  }
   .imgFirma{
     width: 100%;
   }

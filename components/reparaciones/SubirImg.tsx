@@ -139,7 +139,7 @@ const handleClose = () => setOpen(false);
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-        <Box sx={style}>
+        <Box className="boxModal" sx={style}>
             <div>
                 <Typography>Seleccionar una Imagen</Typography>
                 <Controller
@@ -156,7 +156,7 @@ const handleClose = () => setOpen(false);
                             <TextField name="desc" className='m2r' onChange={onChange} value={value} label={"Descripcion"} />
                         )}
                     />
-                <img width={'100%'} src={createObjectURL} />
+                <img className="preImgUp" width={'100%'} src={createObjectURL} />
                 
                 <input type="file" name="myImage" onChange={uploadToClient} />
                 <Button
