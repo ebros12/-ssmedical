@@ -73,13 +73,13 @@
 
 @media (max-width: 480px) {
   .marginInput{
-    margin: 16px;
+    margin: 15px;
   }
   .text90deg{
     margin: 1rem !important;
     width: 0.9rem;
     white-space: nowrap;
-    left: 3rem;
+    left: 2.5rem;
   }
   .smOnly{
     display: block;
