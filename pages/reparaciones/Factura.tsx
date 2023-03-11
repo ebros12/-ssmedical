@@ -20,6 +20,8 @@ const Factura = () => {
     }
     if(infoEmpresas !== null){
       setInfoEmpresas(JSON.parse(infoEmpresas));
+    }else{
+      setInfoCabezera(JSON.parse('[{"id" : "1","correo":"stendo@gemco.cl", "telefono":" +2 2172022","empresa":"GEMCO","nombre":"Gemco General Machinery S.A.","rut":"76.142.730-K","direccion":"Los Nidos 1212 Independencia","contacto":"Noranna Rodriguez","email":"marcia.p03@gmail.com","ciudad":"Santiago"}]'));
     }
     if(infoCabezera !== null){
       setInfoCabezera(JSON.parse(infoCabezera));
