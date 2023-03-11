@@ -6,13 +6,32 @@ import FacturaAcciones from '../../components/reparaciones/FacturaAcciones';
 
 const Factura = () => {
   const [items, setItems] = useState<any[]>([]);
+  const [infoEmpresas, setInfoEmpresas] = useState<any[]>([]);
+  const [infoCabezera, setInfoCabezera] = useState<any[]>([]);
+  
+  
   useEffect(() => {
     let items = localStorage.getItem('favorites') ;
+    let infoEmpresas = localStorage.getItem('InfoEmpresas') ;
+    let infoCabezera = localStorage.getItem('InfoCabezera') ;
+    
     if(items !== null){
       setItems(JSON.parse(items));
     }
+    if(infoEmpresas !== null){
+      setInfoEmpresas(JSON.parse(infoEmpresas));
+    }
+    if(infoCabezera !== null){
+      setInfoCabezera(JSON.parse(infoCabezera));
+    }
+    
+
+    
 
   }, []);
+
+  const objetoEmpresa = infoEmpresas.find(buscar => buscar.id == infoCabezera[0].Cliente)
+  console.log("estar",infoCabezera)
 
   return (
     <ShopLayout title={"S&S Medical"} pageDescription={"Reparaciones | Informe"} >
@@ -42,49 +61,50 @@ const Factura = () => {
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Rut</Typography>
-              <Typography>76.142.730-K</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.rut:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Cliente</Typography>
-              <Typography>Gemco General Machinery S.A.</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.nombre:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Contacto</Typography>
-              <Typography>Noranna Rodriguez</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.contacto:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Fecha</Typography>
-              <Typography>21/7/2022</Typography>
+              <Typography>{infoCabezera[0] !== undefined  ?  infoCabezera[0]['fIngreso']:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Teléfono</Typography>
-              <Typography>+22172022</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.telefono:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Dirección</Typography>
-              <Typography>Los Nidos 1212 Independencia </Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.direccion:''} </Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Email</Typography>
-              <Typography>stendo@gemco.cl</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.correo:''} </Typography>
+              <Typography></Typography>
           </Box>
         </Grid>
         <Grid item xs={3} className='box'>
           <Box>
               <Typography className='headBox'>Ciudad</Typography>
-              <Typography>Santiago</Typography>
+              <Typography>{objetoEmpresa !== undefined  ?  objetoEmpresa.ciudad:''}</Typography>
           </Box>
         </Grid>
         <Grid item xs={12} className='espacio' />

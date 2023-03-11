@@ -1,26 +1,42 @@
-import { Grid, Typography, TextField, CardMedia, Button } from '@mui/material'
+import { Grid, Typography, TextField, CardMedia, Button, Select, MenuItem, InputLabel } from '@mui/material'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 export const Cabezera = () => {
-    
+
     const [infoCabezera, setInfoCabezera] = useState<any[]>([]);
+    const [infoEmpresas, setInfoEmpresas] = useState<any[]>([]);
+    const [ssListado, setssListado] = useState<any[]>([]);
+    const [direccionEmpresa, setDireccionEmpresa] = useState('');
     const { reset, control } = useForm();
     
     useEffect(() => {
         let infoCabezera = localStorage.getItem('InfoCabezera') ;
+        let infoEmpresas = localStorage.getItem('InfoEmpresas') ;
+        let ssListado = localStorage.getItem('ssListado') ;
+        
         if(infoCabezera !== null){
             setInfoCabezera(JSON.parse(infoCabezera));
-            
+        }
+        if(infoEmpresas !== null){
+            setInfoEmpresas(JSON.parse(infoEmpresas)); 
+        }
+        if(ssListado !== null){
+            setssListado(JSON.parse(ssListado)); 
+
         }
     
       }, []);
+      
       const guardarCabezaera = () => {
-        const Cliente = document.querySelector("input[name='Cliente']") as HTMLInputElement | {value:''}
+
+        const Cliente = document.querySelector("input[name='Empresa']") as HTMLInputElement | {value:''}
         const Direccion = document.querySelector("input[name='Direccion']") as HTMLInputElement | {value:''}
         const Modelo = document.querySelector("input[name='Modelo']") as HTMLInputElement | {value:''}
         const nSerie = document.querySelector("input[name='N°Serie']") as HTMLInputElement | {value:''}
-        const fIngreso = document.querySelector("input[name='Fecha Ingreso']") as HTMLInputElement | {value:''}
+        const fIngreso = document.querySelector("input[name='fechaIngreso']") as HTMLInputElement | {value:''}
         const SS = document.querySelector("input[name='SS']") as HTMLInputElement | {value:''}
         const cCliente = document.querySelector("input[name='Comentario Cliente']") as HTMLInputElement | {value:''}
         if(Cliente.value != '' || Modelo.value != ''){
@@ -35,8 +51,21 @@ export const Cabezera = () => {
             }
             infoCabezera.push(auxCabezera);
             localStorage.setItem('InfoCabezera', JSON.stringify(infoCabezera));
+            ssListado.push(infoCabezera)
+            setssListado(ssListado)
+            localStorage.setItem('ssListado', JSON.stringify(ssListado));
             setInfoCabezera(infoCabezera)
         }
+      }
+      const [empresaValue, setEmpresaValue] = useState('0')
+      const eleccionEmpresa = (valor:any) =>{
+        const Direccion = document.querySelector("input[name='Direccion']") as HTMLInputElement | {value:''}
+        setEmpresaValue(valor.target.value)
+        const objetoEmpresa = infoEmpresas.find(buscar => buscar.id == valor.target.value)
+       
+        console.log("objeto",objetoEmpresa.direccion)
+        setDireccionEmpresa(objetoEmpresa.direccion)
+        
       }
 
   return (
@@ -47,19 +76,33 @@ export const Cabezera = () => {
 {infoCabezera.length === 0 ? (
 <Grid container>
         <Grid item xs={12} md={4}>
-    
+        
         <Controller
-            name={"Cliente"}
+            name={"Empresa"}
             control={control}
             render={({ field: { onChange, value } }) => (
-                <TextField name="Cliente" className='m2r' onChange={onChange} value={value} label={"Cliente"} />
+                    <Select
+                        name="Empresa"
+                        value={empresaValue}
+                        labelId="Empresa"
+                        onChange={eleccionEmpresa}
+                        sx={{ width:'80%',marginLeft:'8px' }}
+                    > 
+                    <MenuItem value='0'>Empresa</MenuItem>
+                        {
+                            infoEmpresas.map(item => (
+                                <MenuItem key={item.id} value={item.id}>{item.empresa}</MenuItem>
+            
+                            ))
+                        }
+                    </Select>
             )}
         />
         <Controller
             name={"Direccion"}
             control={control}
             render={({ field: { onChange, value } }) => (
-                <TextField name="Direccion" className='m2r' onChange={onChange} value={value} label={"Direccion"} />
+                <TextField name="Direccion" className='m2r' onChange={onChange} value={direccionEmpresa} label={"Direccion"} />
             )}
         />
         <Controller
@@ -80,17 +123,26 @@ export const Cabezera = () => {
     </Grid>
     <Grid item xs={12} md={4}>
         <Controller
-            name={"Fecha Ingreso"}
-            control={control}
-            render={({ field: { onChange, value } }) => (
-                <TextField name="Fecha Ingreso" className='m1r' onChange={onChange} value={value} label={"Fecha Ingreso"} />
-            )}
-        />
+                    name={"Fecha Ingreso"}
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                          className='m2r'
+                          label="Fecha Ingreso"
+                          value={value}
+                          onChange={onChange}
+                          
+                          renderInput={(params) => <TextField name="fechaIngreso" id="fechaIngreso" className='m2r' {...params} />}
+                      />
+                      </LocalizationProvider>
+                    )}
+                  />
         <Controller
             name={"SS"}
             control={control}
             render={({ field: { onChange, value } }) => (
-                <TextField name="SS" className='m1r' onChange={onChange} value={value} label={"SS"} />
+                <TextField disabled name="SS" className='m1r' value={ssListado.length} label={"SS"} />
             )}
         />
         <Controller

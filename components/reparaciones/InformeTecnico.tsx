@@ -90,7 +90,7 @@ export const InformeTecnico = () => {
                                     name={itemData.name}
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
-                                        <Box display={'flex'} padding={'2rem 0rem;'} key={`${itemData.name}111`}>
+                                        <Box display={'flex'}  key={`${itemData.name}111`}>
                                             {
                                                 itemData.detalles.map(detalle => (
                                                     <Box  key={detalle}>
