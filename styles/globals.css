@@ -79,6 +79,9 @@
   max-width: 70%;
   padding: 2rem;
 }
+.PCEmpresa{
+  margin: 0.2rem!important;
+}
 @media (max-width: 480px) {
   .boxModal{
     width: 290px!important;

@@ -63,7 +63,7 @@ export const Cabezera = () => {
       const eleccionEmpresa = (valor:any) =>{
         const Direccion = document.querySelector("input[name='Direccion']") as HTMLInputElement | {value:''}
         setEmpresaValue(valor.target.value)
-        const objetoEmpresa = infoEmpresas.find(buscar => buscar.id == valor.target.value)
+        const objetoEmpresa = infoEmpresas.find(buscar => buscar.empresa == valor.target.value)
        
         console.log("objeto",objetoEmpresa.direccion)
         setDireccionEmpresa(objetoEmpresa.direccion)
@@ -93,7 +93,7 @@ export const Cabezera = () => {
                     <MenuItem value='0'>Empresa</MenuItem>
                         {
                             infoEmpresas.map(item => (
-                                <MenuItem key={item.id} value={item.id}>{item.empresa}</MenuItem>
+                                <MenuItem key={item.id} value={item.empresa}>{item.empresa}</MenuItem>
             
                             ))
                         }
