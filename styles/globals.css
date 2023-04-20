@@ -82,6 +82,43 @@
 .PCEmpresa{
   margin: 0.2rem!important;
 }
+.boton-descarga {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.boton-descarga:hover {
+  background-color: #3e8e41;
+  cursor: pointer;
+}
+
+.boton-descarga i {
+  margin-right: 5px;
+}
+.paper{
+  min-height: 21rem;
+}
+.scroling{
+  overflow-y: auto;
+  height: 6rem;
+  padding: 1rem;
+  border: outset;
+  margin: 1rem;
+}
+.itemsDiagnostico{
+  border: outset;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 @media (max-width: 480px) {
   .boxModal{
     width: 290px!important;

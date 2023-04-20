@@ -11,6 +11,7 @@ export const Cabezera = () => {
     const [ssListado, setssListado] = useState<any[]>([]);
     const [direccionEmpresa, setDireccionEmpresa] = useState('');
     const { reset, control } = useForm();
+    const [actualizar, setActualizar] = useState(false)
     
     useEffect(() => {
         let infoCabezera = localStorage.getItem('InfoCabezera') ;
@@ -30,7 +31,7 @@ export const Cabezera = () => {
 
         }
     
-      }, []);
+      }, [actualizar]);
       
       const guardarCabezaera = () => {
 
@@ -52,11 +53,12 @@ export const Cabezera = () => {
                 cCliente:cCliente.value,
             }
             infoCabezera.push(auxCabezera);
-            localStorage.setItem('InfoCabezera', JSON.stringify(infoCabezera));
-            ssListado.push(infoCabezera)
+            ssListado.push(infoCabezera[0])
             setssListado(ssListado)
-            localStorage.setItem('ssListado', JSON.stringify(ssListado));
             setInfoCabezera(infoCabezera)
+            localStorage.setItem('InfoCabezera', JSON.stringify(infoCabezera));
+            localStorage.setItem('ssListado', JSON.stringify(ssListado));
+            setActualizar(!actualizar)
         }
       }
       const [empresaValue, setEmpresaValue] = useState('0')
@@ -68,6 +70,12 @@ export const Cabezera = () => {
         console.log("objeto",objetoEmpresa.direccion)
         setDireccionEmpresa(objetoEmpresa.direccion)
         
+      }
+      const borrarTodo = () =>{
+        localStorage.removeItem('FDiagnostico');
+        localStorage.removeItem('InfoCabezera');
+        setInfoCabezera([])
+        setActualizar(!actualizar)
       }
 
   return (
@@ -144,7 +152,7 @@ export const Cabezera = () => {
             name={"SS"}
             control={control}
             render={({ field: { onChange, value } }) => (
-                <TextField disabled name="SS" className='m1r' value={ssListado.length} label={"SS"} />
+                <TextField disabled name="SS" className='m1r' value={ssListado.length===0?1:ssListado.length} label={"SS"} />
             )}
         />
         <Controller
@@ -196,7 +204,7 @@ export const Cabezera = () => {
 }
             <Grid item xs={12}>
             {
-                infoCabezera.length === 0?<Button sx={{ float:'right'  }} color='success' onClick={guardarCabezaera}>Guardar Informacion del cliente</Button>:''
+                infoCabezera.length === 0?<Button sx={{ float:'right'  }} color='success' onClick={guardarCabezaera}>Guardar Informacion del cliente</Button>:<Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
             }
             </Grid>
             <hr style={{ margin:'3rem 0rem' }}/>

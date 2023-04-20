@@ -6,6 +6,7 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import { Controller, useForm } from "react-hook-form";
+import Link from 'next/link';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -57,7 +58,7 @@ const TableCotizacion = () => {
       
     }
 
-  }, []);
+  }, [setItems]);
 
 
   console.log(items)
@@ -103,12 +104,39 @@ const TableCotizacion = () => {
 
 
     const options = [
-      {value: "10",label: 'EN ESPERA OC'},
-      {value: "20",label: 'EN PROCESO'},
-      {value: "30",label: 'EN ESPERA PAGO'},
-      {value: "40",label: 'PAGADO'},
-
-    ]
+      { value: "10", label: "EN ESPERA OC", id: "1" },
+      { value: "20", label: "EN PROCESO", id: "2" },
+      { value: "30", label: "EN ESPERA PAGO", id: "3" },
+      { value: "40", label: "PAGADO", id: "4" }
+    ];
+    const handleSelectChange = (event:any) => {
+      // Obtener el valor seleccionado
+      const selectedValue = event.target.value;
+    
+      // Obtener la etiqueta seleccionada
+      const selectedLabel = event.target.options[event.target.selectedIndex].label;
+    
+      // Obtener el ID de la opción seleccionada
+      const selectedId = event.target.options[event.target.selectedIndex].id;
+    
+      // Actualizar el localStorage con los valores seleccionados
+      localStorage.setItem('selectedValue', selectedValue);
+      localStorage.setItem('selectedLabel', selectedLabel);
+      localStorage.setItem('selectedId', selectedId);
+    
+      // Realizar la lógica adicional de manejo de eventos aquí
+      console.log("Valor seleccionado:", selectedValue);
+      console.log("Etiqueta seleccionada:", selectedLabel);
+      console.log("ID:", selectedId);
+    };
+    
+    
+    
+    
+    
+    
+    
+    
   
   return (
     <Grid container sx={{ margin:'1rem',float:'right' }}>
@@ -146,16 +174,19 @@ const TableCotizacion = () => {
           <StyledTableCell align="right">{row.InfoCabezera[0].Cliente}</StyledTableCell>
           <StyledTableCell align="right">{row.fechaCotiz}</StyledTableCell>
           <StyledTableCell align="right">{row.total}</StyledTableCell>
-          <StyledTableCell align="right">{row.InfoCabezera[0].SS}</StyledTableCell>
+          <StyledTableCell align="right">
+          <Link href={`/visor/${row.InfoCabezera[0].SS}`} as={`/visor/${row.InfoCabezera[0].SS}`}>
+            {row.InfoCabezera[0].SS}
+          </Link>
+            </StyledTableCell>
           <StyledTableCell align="right">{row.InfoCabezera[0].fIngreso}</StyledTableCell>
           <StyledTableCell align="right">{row.facturas[0].id}</StyledTableCell>
           <StyledTableCell align="right">{row.facturas[0].fechaCotiz}</StyledTableCell>
           <StyledTableCell align="right">{row.fechaPago}</StyledTableCell>
           <StyledTableCell align="right">  
-            <Select className="selects" options={options} defaultValue={options[options.findIndex((filtro) => filtro.value == row.estado)]}/>
+          <Select id={row.id}  onChange={handleSelectChange} className="selects" options={options} defaultValue={options[options.findIndex((filtro) => filtro.value == row.estado)]}/>
           </StyledTableCell>
           <StyledTableCell align="right">{row.comentarios}</StyledTableCell>
-          
         </StyledTableRow>
       ))}
     </TableBody>

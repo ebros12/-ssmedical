@@ -28,6 +28,7 @@ const Index = () => {
 
     const [items, setItems] = useState<any[]>([]);
     const [infoCabezera, setInfoCabezera] = useState<any[]>([]);
+    const [actualizar, setActualizar] = useState(false)
 
     useEffect(() => {
         let items = localStorage.getItem('FDiagnostico') ;
@@ -40,7 +41,7 @@ const Index = () => {
             
         }
     
-      }, []);
+      }, [actualizar]);
 
  
 
@@ -97,12 +98,7 @@ const Index = () => {
           }
 
       }
-      const borrarTodo = () =>{
-        localStorage.removeItem('FDiagnostico');
-        localStorage.removeItem('InfoCabezera');
-        setItems([])
-        setInfoCabezera([])
-      }
+
       
 
   return (
@@ -113,7 +109,7 @@ const Index = () => {
 
 
         <Grid item xs={12}>
-            <Button sx={{ float:'right' }} onClick={borrarTodo}>borrar todo</Button>
+            
             <InformeTecnico />
             
         </Grid>

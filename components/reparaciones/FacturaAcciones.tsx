@@ -85,6 +85,7 @@ const FacturaAcciones = () => {
         const Informe = JSON.parse(localStorage.getItem('Informe') || '');
         const InformeImg = JSON.parse(localStorage.getItem('InformeImg') || '');
         const RespFDiagnostico = JSON.parse(localStorage.getItem('RespFDiagnostico') || '');
+        console.log("toy guardando",RespFDiagnostico)
         const cotizaciones = cotizacionesArr 
         const facturas = facturasArr 
         if(cotizaciones!=null && facturas != null){
